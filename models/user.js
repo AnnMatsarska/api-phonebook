@@ -7,6 +7,7 @@ const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 // ---JOI Schema --------------------------------
 
 const registerSchema = Joi.object({
+  name: Joi.string().required(),
   email: Joi.string().pattern(emailRegexp).required(),
   password: Joi.string().min(6).required(),
 });
@@ -33,6 +34,10 @@ const schemas = {
 
 const userSchema = new Schema(
   {
+    name: {
+      type: String,
+      required: [true, "Name is required"],
+    },
     password: {
       type: String,
       required: [true, "Set password for user"],
@@ -47,10 +52,12 @@ const userSchema = new Schema(
       enum: ["starter", "pro", "business"],
       default: "starter",
     },
-    token: String,
+    token: {
+      type: String,
+    },
     avatarURL: {
       type: String,
-      required: true,
+      // required: true,
     },
     verify: {
       type: Boolean,

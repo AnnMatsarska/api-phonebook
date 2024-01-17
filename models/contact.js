@@ -9,22 +9,22 @@ const addSchema = Joi.object({
     .min(2)
     .required()
     .messages({ "any.required": "missing required name field" }),
-  email: Joi.string()
-    .email()
-    .min(6)
-    .required()
-    .messages({ "any.required": "missing required email field" }),
-  phone: Joi.string()
+  // email: Joi.string()
+  //   .email()
+  //   .min(6)
+  //   .required()
+  //   .messages({ "any.required": "missing required email field" }),
+  number: Joi.string()
     .min(8)
     .required()
-    .messages({ "any.required": "missing required phone field" }),
-  favorite: Joi.boolean(),
+    .messages({ "any.required": "missing required number field" }),
+  // favorite: Joi.boolean(),
 });
 
 const updateSchema = Joi.object({
   name: Joi.string().min(2),
   email: Joi.string().email(),
-  phone: Joi.string().min(8),
+  number: Joi.string().min(8),
   favorite: Joi.boolean(),
 })
   .min(1)
@@ -50,22 +50,22 @@ const contactSchema = new Schema(
       type: String,
       required: [true, "Set name for contact"],
     },
-    email: {
+    // email: {
+    //   type: String,
+    // },
+    number: {
       type: String,
     },
-    phone: {
-      type: String,
-    },
-    favorite: {
-      type: Boolean,
-      default: false,
-    },
+    // favorite: {
+    //   type: Boolean,
+    //   default: false,
+    // },
     owner: {
       type: Schema.Types.ObjectId,
       ref: "user",
     },
   },
-  { versionKey: false, timestamps: true }
+  { versionKey: false }
 );
 
 contactSchema.post("save", handleMongooseError);
