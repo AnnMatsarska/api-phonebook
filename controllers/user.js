@@ -21,13 +21,13 @@ const register = async (req, res) => {
   }
 
   const hashPassword = await bcrypt.hash(password, 10);
-  const avatarURL = gravatar.url(email);
+  const avatar = gravatar.url(email);
   const verificationToken = nanoid();
 
   const newUser = await User.create({
     ...req.body,
     password: hashPassword,
-    avatarURL,
+    avatar,
     verificationToken,
   });
 
@@ -41,6 +41,7 @@ const register = async (req, res) => {
 
   res.status(201).json({
     user: {
+      name: newUser.name,
       email: newUser.email,
       subscription: newUser.subscription,
     },
@@ -110,6 +111,7 @@ const login = async (req, res) => {
   res.json({
     token,
     user: {
+      name: user.name,
       email: user.email,
       subscription: user.subscription,
     },
@@ -117,9 +119,10 @@ const login = async (req, res) => {
 };
 
 const getCurrent = async (req, res) => {
-  const { email, subscription } = req.user;
+  const { name, email, subscription } = req.user;
 
   res.json({
+    name,
     email,
     subscription,
   });
@@ -149,11 +152,11 @@ const updateAvatar = async (req, res) => {
 
   await fs.rename(tempUpload, resultUpload);
 
-  const avatarURL = path.join("avatars", fileName);
-  await User.findByIdAndUpdate(_id, { avatarURL });
+  const avatar = path.join("avatars", fileName);
+  await User.findByIdAndUpdate(_id, { avatar });
 
   res.json({
-    avatarURL,
+    avatar,
   });
 };
 

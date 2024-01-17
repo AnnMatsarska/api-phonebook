@@ -13,6 +13,7 @@ const registerSchema = Joi.object({
 });
 
 const loginSchema = Joi.object({
+  name: Joi.string(),
   email: Joi.string().pattern(emailRegexp).required(),
   password: Joi.string().min(6).required(),
 });
@@ -55,7 +56,7 @@ const userSchema = new Schema(
     token: {
       type: String,
     },
-    avatarURL: {
+    avatar: {
       type: String,
       // required: true,
     },
