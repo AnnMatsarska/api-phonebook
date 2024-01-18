@@ -13,7 +13,7 @@ const registerSchema = Joi.object({
 });
 
 const loginSchema = Joi.object({
-  name: Joi.string(),
+  // name: Joi.string(),
   email: Joi.string().pattern(emailRegexp).required(),
   password: Joi.string().min(6).required(),
 });
