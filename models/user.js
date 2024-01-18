@@ -58,7 +58,7 @@ const userSchema = new Schema(
     },
     avatar: {
       type: String,
-      // required: true,
+      required: true,
     },
     verify: {
       type: Boolean,

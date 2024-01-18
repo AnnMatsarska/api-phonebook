@@ -44,6 +44,7 @@ const register = async (req, res) => {
       name: newUser.name,
       email: newUser.email,
       subscription: newUser.subscription,
+      avatar: newUser.avatar,
     },
   });
 };
@@ -113,19 +114,17 @@ const login = async (req, res) => {
     user: {
       name: user.name,
       email: user.email,
-      subscription: user.subscription,
+      avatar: user.avatar,
     },
   });
 };
 
 const getCurrent = async (req, res) => {
-  const { name, email, subscription } = req.user;
+  const { _id } = req.user;
 
-  res.json({
-    name,
-    email,
-    subscription,
-  });
+  const { name, email, subscription, avatar } = await User.findOne({ _id });
+
+  res.json({ name, email, subscription, avatar });
 };
 
 const logout = async (req, res) => {
