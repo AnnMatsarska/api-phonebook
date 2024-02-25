@@ -1,8 +1,8 @@
 # Phonebook - Find a person
 
-![Main page screenshot](./src/images/mainPage.png)
+![Main page screenshot](https://github.com/AnnMatsarska/phonebook-find-a-person/blob/main/src/images/mainPage.png?raw=true)
 
-**Link to** [BACKEND-repo](https://github.com/AnnMatsarska/api-phonebook)
+**Link to** [FRONTEND-repo](https://github.com/AnnMatsarska/phonebook-find-a-person)
 
 ## About the project:
 
